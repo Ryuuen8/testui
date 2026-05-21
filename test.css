@@ -1,31 +1,20 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
 body {
-
     height: 100vh;
+    margin: 0;
     overflow: hidden;
     position: relative;
 }
 
-/* Leaflet fills screen */
 #map {
-
     position: absolute;
     top: 0;
     left: 0;
 
-    height: 100%;
     width: 100%;
+    height: 100vh;
+
     z-index: 1;
 }
-
-
-/* Overlay UI */
 
 .app-container {
 
@@ -36,70 +25,70 @@ body {
     width: 100%;
     height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
     z-index: 1000;
 
     pointer-events: none;
 }
 
-
-/* Building */
-
 .hero {
-
-    padding-top: 20px;
-
-    display: flex;
-    justify-content: center;
+    pointer-events: auto;
 }
 
-.hero img {
+/* Bottom Footer */
 
-    width: 95%;
-    max-width: 400px;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, .35);
-}
-
-
-/* Bottom Navigation */
+/* Footer */
 
 .menu-container {
 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: white;
+
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 
-    padding: 15px 10px;
-    gap: 8px;
+    padding: 25px 10px 10px;
+
+    border-radius: 25px 25px 0 0;
+
+    box-shadow:
+        0 -5px 20px rgba(0, 0, 0, .2);
+
+    z-index: 1001;
 }
+
+
+/* Icon cards */
 
 .menu-box {
 
     width: 65px;
     height: 65px;
 
-    background: #19c3e6;
-
-    border-radius: 8px;
+    background: white;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    pointer-events: auto;
+    border-radius: 12px;
 
     box-shadow:
-        0 4px 10px rgba(0, 0, 0, .3);
+        0 4px 8px rgba(0, 0, 0, .15);
+
+    /* Moves icon upward */
+    transform: translateY(-40px);
+
+    flex-shrink: 0;
 }
 
 .menu-box i {
 
     font-size: 28px;
-    color: white;
+    color: #19c3e6;
 }
