@@ -1,8 +1,22 @@
+/* ============================================
+   FULLY RESPONSIVE CSS (all phones)
+   Icons extend OUTSIDE white background
+   ============================================ */
+
+/* Reset & base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
     position: relative;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Leaflet map */
@@ -10,111 +24,284 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100vh;
-
     z-index: 1;
 }
 
-/* Overlay container */
+/* Overlay container - allows overflow for icons */
 .app-container {
-
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     z-index: 1000;
-
     pointer-events: none;
+    overflow: visible !important;
 }
 
 .hero {
     pointer-events: auto;
 }
 
-
-/* FOOTER */
-
+/* ========== FOOTER MENU - ICONS POP OUT OF WHITE BG ========== */
 .menu-container {
-
     position: absolute;
     bottom: 0;
     left: 0;
-
+    right: 0;
     width: 100%;
-
-    background: white;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-    padding: 20px 8px 8px;
-
-    border-radius: 25px 25px 0 0;
-
-    box-shadow:
-        0 -5px 20px rgba(0, 0, 0, .2);
-
-    z-index: 1001;
-}
-
-
-/* ICON BOXES */
-
-.menu-box {
-
-    width: clamp(50px, 16vw, 65px);
-    height: clamp(50px, 16vw, 65px);
-
-    background: white;
-
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(0px);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: max(8px, min(3vw, 20px));
+    padding: max(8px, min(2vh, 15px)) max(12px, min(4vw, 30px)) max(15px, min(3vh, 25px));
+    border-radius: max(20px, min(5vw, 35px)) max(20px, min(5vw, 35px)) 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12), 0 -1px 0 rgba(0, 0, 0, 0.05);
+    z-index: 1001;
+    touch-action: manipulation;
+    overflow: visible !important;
+}
 
-    border-radius: 12px;
-
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, .15);
-
-    /* raise icons */
-    transform: translateY(-45%);
-
+/* Icon boxes - extend outward from white container */
+.menu-box {
+    /* Responsive sizing using vw + clamp */
+    width: clamp(50px, 15vw, 80px);
+    height: clamp(50px, 15vw, 80px);
+    min-width: 44px;
+    /* safe touch target */
+    max-width: 85px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: clamp(12px, 4vw, 22px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateY(calc(-35% - 5px));
     flex-shrink: 0;
-
     pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.1s ease;
+    overflow: visible;
+    /* slight margin to ensure nothing gets cropped */
+    margin-bottom: -5px;
 }
 
+/* Press/tap effect */
+.menu-box:active {
+    transform: translateY(calc(-32% - 5px)) scale(0.94);
+    background: #f0f5fa;
+    transition: 0.05s;
+}
 
-/* ICON SIZE */
-
+/* Icons inside boxes */
 .menu-box i {
-
-    font-size: clamp(20px, 6vw, 28px);
-
+    font-size: clamp(20px, 7vw, 34px);
     color: #19c3e6;
+    display: block;
+    line-height: 1;
+    transition: color 0.1s ease;
 }
 
+.menu-box:active i {
+    color: #0f9bc0;
+}
 
-/* Extra small phones */
-@media (max-width:360px) {
+/* ========== FULL RESPONSIVE BREAKPOINTS ========== */
 
+/* Extra small phones (<= 360px) */
+@media (max-width: 360px) {
     .menu-container {
-        padding: 15px 5px 5px;
+        gap: 6px;
+        padding: 8px 10px 14px;
+        border-radius: 18px 18px 0 0;
     }
 
     .menu-box {
         width: 48px;
         height: 48px;
+        transform: translateY(-38%);
+        border-radius: 12px;
+    }
+
+    .menu-box:active {
+        transform: translateY(-34%) scale(0.93);
     }
 
     .menu-box i {
         font-size: 20px;
     }
+}
 
+/* Small phones (361px - 400px) */
+@media (min-width: 361px) and (max-width: 400px) {
+    .menu-container {
+        gap: 8px;
+        padding: 9px 12px 15px;
+    }
+
+    .menu-box {
+        width: 52px;
+        height: 52px;
+        transform: translateY(-40%);
+        border-radius: 14px;
+    }
+
+    .menu-box i {
+        font-size: 22px;
+    }
+}
+
+/* Medium-small phones (401px - 480px) */
+@media (min-width: 401px) and (max-width: 480px) {
+    .menu-container {
+        gap: 10px;
+        padding: 11px 14px 18px;
+    }
+
+    .menu-box {
+        width: 58px;
+        height: 58px;
+        transform: translateY(-42%);
+        border-radius: 16px;
+    }
+
+    .menu-box i {
+        font-size: 24px;
+    }
+}
+
+/* Standard phones (481px - 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+    .menu-container {
+        gap: 12px;
+        padding: 12px 18px 20px;
+    }
+
+    .menu-box {
+        width: 65px;
+        height: 65px;
+        transform: translateY(-45%);
+        border-radius: 18px;
+    }
+
+    .menu-box i {
+        font-size: 26px;
+    }
+}
+
+/* Large phones / small tablets (641px - 768px) */
+@media (min-width: 641px) and (max-width: 768px) {
+    .menu-container {
+        gap: 16px;
+        padding: 14px 22px 24px;
+    }
+
+    .menu-box {
+        width: 72px;
+        height: 72px;
+        transform: translateY(-48%);
+        border-radius: 20px;
+    }
+
+    .menu-box i {
+        font-size: 30px;
+    }
+}
+
+/* Extra large phones (769px - 900px) — rare, but keep proportional */
+@media (min-width: 769px) and (max-width: 900px) {
+    .menu-container {
+        gap: 20px;
+        padding: 15px 25px 26px;
+    }
+
+    .menu-box {
+        width: 80px;
+        height: 80px;
+        transform: translateY(-50%);
+        border-radius: 22px;
+    }
+
+    .menu-box i {
+        font-size: 34px;
+    }
+}
+
+/* Landscape orientation on phones - adjust vertical translation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .menu-container {
+        padding: 6px 12px 12px;
+    }
+
+    .menu-box {
+        transform: translateY(-35%);
+        width: 48px;
+        height: 48px;
+    }
+
+    .menu-box:active {
+        transform: translateY(-32%) scale(0.94);
+    }
+
+    .menu-box i {
+        font-size: 20px;
+    }
+}
+
+/* Ensure no clipping anywhere */
+body, .app-container, .menu-container, .menu-box {
+    overflow: visible;
+}
+
+#map {
+    overflow: visible;
+}
+
+/* Safe area handling for modern iPhones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .menu-container {
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Touch-friendly active area */
+.menu-box {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Prevent text selection on tap */
+.menu-box i {
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Hero remains interactive */
+.hero {
+    pointer-events: auto;
+}
+
+/* Fluid width adjustments */
+@media (max-width: 280px) {
+
+    /* Smallest phones */
+    .menu-container {
+        gap: 4px;
+        padding: 6px 6px 12px;
+    }
+
+    .menu-box {
+        width: 42px;
+        height: 42px;
+        transform: translateY(-35%);
+        border-radius: 10px;
+    }
+
+    .menu-box i {
+        font-size: 18px;
+    }
 }
