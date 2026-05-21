@@ -5,6 +5,7 @@ body {
     position: relative;
 }
 
+/* Leaflet map */
 #map {
     position: absolute;
     top: 0;
@@ -16,6 +17,7 @@ body {
     z-index: 1;
 }
 
+/* Overlay container */
 .app-container {
 
     position: absolute;
@@ -34,9 +36,8 @@ body {
     pointer-events: auto;
 }
 
-/* Bottom Footer */
 
-/* Footer */
+/* FOOTER */
 
 .menu-container {
 
@@ -52,7 +53,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
 
-    padding: 25px 10px 10px;
+    padding: 20px 8px 8px;
 
     border-radius: 25px 25px 0 0;
 
@@ -63,12 +64,12 @@ body {
 }
 
 
-/* Icon cards */
+/* ICON BOXES */
 
 .menu-box {
 
-    width: 65px;
-    height: 65px;
+    width: clamp(50px, 16vw, 65px);
+    height: clamp(50px, 16vw, 65px);
 
     background: white;
 
@@ -81,14 +82,39 @@ body {
     box-shadow:
         0 4px 8px rgba(0, 0, 0, .15);
 
-    /* Moves icon upward */
-    transform: translateY(-40px);
+    /* raise icons */
+    transform: translateY(-45%);
 
     flex-shrink: 0;
+
+    pointer-events: auto;
 }
+
+
+/* ICON SIZE */
 
 .menu-box i {
 
-    font-size: 28px;
+    font-size: clamp(20px, 6vw, 28px);
+
     color: #19c3e6;
+}
+
+
+/* Extra small phones */
+@media (max-width:360px) {
+
+    .menu-container {
+        padding: 15px 5px 5px;
+    }
+
+    .menu-box {
+        width: 48px;
+        height: 48px;
+    }
+
+    .menu-box i {
+        font-size: 20px;
+    }
+
 }
