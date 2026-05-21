@@ -1,5 +1,6 @@
 /* ============================================
    FULLY RESPONSIVE CSS (all phones)
+   FOOTER: FIXED POSITION (always visible)
    Icons extend OUTSIDE white background
    ============================================ */
 
@@ -45,9 +46,10 @@ body {
     pointer-events: auto;
 }
 
-/* ========== FOOTER MENU - ICONS POP OUT OF WHITE BG ========== */
+/* ========== FOOTER MENU - FIXED POSITION ========== */
 .menu-container {
-    position: absolute;
+    position: fixed;
+    /* CHANGED: fixed instead of absolute */
     bottom: 0;
     left: 0;
     right: 0;
@@ -69,8 +71,8 @@ body {
 /* Icon boxes - extend outward from white container */
 .menu-box {
     /* Responsive sizing using vw + clamp */
-    width: clamp(50px, 15vw, 80px);
-    height: clamp(50px, 15vw, 80px);
+    width: clamp(48px, 15vw, 80px);
+    height: clamp(48px, 15vw, 80px);
     min-width: 44px;
     /* safe touch target */
     max-width: 85px;
@@ -121,8 +123,8 @@ body {
     }
 
     .menu-box {
-        width: 48px;
-        height: 48px;
+        width: 46px;
+        height: 46px;
         transform: translateY(-38%);
         border-radius: 12px;
     }
@@ -144,8 +146,8 @@ body {
     }
 
     .menu-box {
-        width: 52px;
-        height: 52px;
+        width: 50px;
+        height: 50px;
         transform: translateY(-40%);
         border-radius: 14px;
     }
@@ -163,8 +165,8 @@ body {
     }
 
     .menu-box {
-        width: 58px;
-        height: 58px;
+        width: 56px;
+        height: 56px;
         transform: translateY(-42%);
         border-radius: 16px;
     }
@@ -182,8 +184,8 @@ body {
     }
 
     .menu-box {
-        width: 65px;
-        height: 65px;
+        width: 64px;
+        height: 64px;
         transform: translateY(-45%);
         border-radius: 18px;
     }
@@ -212,7 +214,7 @@ body {
     }
 }
 
-/* Extra large phones (769px - 900px) — rare, but keep proportional */
+/* Extra large phones (769px - 900px) */
 @media (min-width: 769px) and (max-width: 900px) {
     .menu-container {
         gap: 20px;
@@ -239,8 +241,8 @@ body {
 
     .menu-box {
         transform: translateY(-35%);
-        width: 48px;
-        height: 48px;
+        width: 46px;
+        height: 46px;
     }
 
     .menu-box:active {
@@ -261,7 +263,7 @@ body, .app-container, .menu-container, .menu-box {
     overflow: visible;
 }
 
-/* Safe area handling for modern iPhones */
+/* Safe area handling for modern iPhones (notch/home indicator) */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
     .menu-container {
         padding-bottom: max(16px, env(safe-area-inset-bottom));
@@ -285,18 +287,16 @@ body, .app-container, .menu-container, .menu-box {
     pointer-events: auto;
 }
 
-/* Fluid width adjustments */
+/* Smallest devices (<= 280px) emergency fix */
 @media (max-width: 280px) {
-
-    /* Smallest phones */
     .menu-container {
         gap: 4px;
         padding: 6px 6px 12px;
     }
 
     .menu-box {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
         transform: translateY(-35%);
         border-radius: 10px;
     }
